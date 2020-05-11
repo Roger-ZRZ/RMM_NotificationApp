@@ -1,0 +1,15 @@
+[Username]
+[Password]
+[Your Bot ID]
+[Your Bot Secret]
+[Refresh Interval (seconds)]
+
+[keyword 1]
+[keyword 2]
+
+[keyword 3]
+
+[keyword 4]
+[keyword 5]
+[keyword 6]
+...

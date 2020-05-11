@@ -38,6 +38,11 @@ public class Main {
 		fileChooser.setMode(FileDialog.LOAD);
 		fileChooser.setVisible(true);
 		String filePath = fileChooser.getDirectory()+fileChooser.getFile();
+		if(filePath.equals("nullnull")){
+			System.exit(-2);
+		}
+
+		//scan configs
 		buyFilters = new ArrayList<>();
 		Scanner scanner = new Scanner(new File(filePath));
 		String username = scanner.nextLine();
@@ -48,13 +53,14 @@ public class Main {
 		while(scanner.hasNextLine()){
 			String nextline = scanner.nextLine();
 			if(nextline!=null&&nextline.length()>0)
-			buyFilters.add(nextline);
+			buyFilters.add(nextline.toLowerCase());
 		}
+		System.out.println("buyFilters = " + buyFilters);
 
 		//graphics init
 		GComponentInterface graphics = new GUI();
 		graphics.init();
-		graphics.setText("");
+		graphics.setText("Init with Keywords: \n"+buyFilters.toString());
 
 	    //acquire authorization from webapp in reddit client (not in this file)
 	    UserAgent userAgent;
@@ -72,7 +78,6 @@ public class Main {
 		}
 
 	    SubredditReference mechMarket = redditClient.subreddit("mechmarket");
-
 	    boolean firstTime = true;
 	    while(true){
 	    	if(firstTime){
@@ -82,7 +87,7 @@ public class Main {
 		    }
 
 		    DefaultPaginator paginator = mechMarket.posts()
-				    .limit(2)
+				    .limit(1)
 				    .sorting(SubredditSort.NEW)
 				    .timePeriod(TimePeriod.MONTH)
 				    .build();
@@ -111,7 +116,7 @@ public class Main {
 
 		    System.out.println(haves);
 		    for(String thisKeyword: buyFilters){
-		    	if(haves.contains(thisKeyword)){
+		    	if(haves.toLowerCase().contains(thisKeyword)){
 				    graphics.appendText(submissionTitle+"\n"+submissionURL);
 				    graphics.popupLink(thisKeyword, submissionTitle, submissionURL);
 				    continue;
