@@ -16,11 +16,11 @@ Refresh Interval and Keywords are both configurable from the config file;
 
 <b>Step 1</b>: Download the .jar file: https://github.com/Roger-ZRZ/RMM_NotificationApp/blob/master/out/artifacts/JRedditAlert_jar/JRedditAlert.jar;
 
-<b>Step 2</b>: Write/modify your config file according to the template or example; (see picture below and both .txt files in this directory)\
-![](step0.png) \
+<b>Step 2</b>: Write/modify your config file according to the template or example; (see picture below and both .txt files in this directory) (note that in a recent update, line 6 is dedicated to indicating the Region of the seller, as in "US" or "EU")\
+![](step0.png)
 
 <b>Step 3</b>: Double click on the .jar file you just downloaded, you should expect a file selection window to appear just like in the picture below; choose the config file you just wrote in step 2; \
-![](step1.png) \
+![](step1.png)
 
 <b>Step 4</b>: A window like the following will appear and you are done starting the program; this window will show the history (from now on) of all the posts that contains your keyword in their [H] tag; The clear button on the left will clear all history in text area; \
 ![](step2.png)

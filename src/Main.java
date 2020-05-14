@@ -13,6 +13,7 @@ import net.dean.jraw.references.SubmissionReference;
 import net.dean.jraw.references.SubredditReference;
 import net.dean.jraw.tree.CommentNode;
 
+import javax.lang.model.util.Elements;
 import java.awt.FileDialog;
 import java.awt.Frame;
 import java.io.File;
@@ -50,6 +51,8 @@ public class Main {
 		String botID = scanner.nextLine();
 		String botSecret = scanner.nextLine();
 		refreshTime = Long.parseLong(scanner.nextLine());
+		String regionReq = scanner.nextLine();
+
 		while(scanner.hasNextLine()){
 			String nextline = scanner.nextLine();
 			if(nextline!=null&&nextline.length()>0)
@@ -110,17 +113,28 @@ public class Main {
 		    if(segments.length<3){
 		    	continue;//GB or IC
 		    }
-		    String orgins = segments[0];
+		    String origins = segments[0];
 		    String haves = segments[1];
 		    String wants = segments[2];
 
-		    System.out.println(haves);
+		    System.out.println(submissionTitle);
 		    for(String thisKeyword: buyFilters){
-		    	if(haves.toLowerCase().contains(thisKeyword)){
+		    	if(regionReq.length()!=0){
+		    		//using region tag
+				    if(origins.toLowerCase().contains(regionReq.toLowerCase())
+						    && haves.toLowerCase().contains(thisKeyword)){
+				    	//region tag matches and have tag matches
+					    graphics.appendText(submissionTitle+"\n"+submissionURL);
+					    graphics.popupLink(thisKeyword, submissionTitle, submissionURL);
+					    continue;
+				    }
+			    }else if(haves.toLowerCase().contains(thisKeyword)){
+				    //region tag matches and have tag matches
 				    graphics.appendText(submissionTitle+"\n"+submissionURL);
 				    graphics.popupLink(thisKeyword, submissionTitle, submissionURL);
 				    continue;
-			    }
+		    	}
+
 		    }
 	    }
 
