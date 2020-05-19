@@ -126,13 +126,13 @@ public class Main {
 				    	//region tag matches and have tag matches
 					    graphics.appendText(submissionTitle+"\n"+submissionURL);
 					    graphics.popupLink(thisKeyword, submissionTitle, submissionURL);
-					    continue;
+					    break;
 				    }
 			    }else if(haves.toLowerCase().contains(thisKeyword)){
 				    //region tag matches and have tag matches
 				    graphics.appendText(submissionTitle+"\n"+submissionURL);
 				    graphics.popupLink(thisKeyword, submissionTitle, submissionURL);
-				    continue;
+				    break;
 		    	}
 
 		    }
